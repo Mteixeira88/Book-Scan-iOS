@@ -18,6 +18,8 @@ class BSResultViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
         backgroundView.addGestureRecognizer(tap)
+        
+        configureUI()
     }
     
     func configureUI() {
