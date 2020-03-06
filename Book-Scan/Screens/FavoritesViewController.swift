@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController {
 }
 
 extension FavoritesViewController: BSSearchControllerDelegate {
-    func didTapSearchButton() {
-        presentBSResultOnMainThread()
+    func didTapSearchButton(for query: String) {
+//        presentBSResultOnMainThread()
     }
 }

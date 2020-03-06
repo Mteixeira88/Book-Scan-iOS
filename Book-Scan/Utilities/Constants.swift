@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum Network {
+    static let keyGoodReads = "6uEyilxVLXRueBiQKDBmfg"
+}
+
 enum SFSybmols {
     static let searchGlass = UIImage(systemName: "magnifyingglass")
 }

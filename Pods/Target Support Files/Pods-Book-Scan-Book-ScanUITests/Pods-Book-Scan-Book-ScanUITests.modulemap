@@ -1,0 +1,6 @@
+framework module Pods_Book_Scan_Book_ScanUITests {
+  umbrella header "Pods-Book-Scan-Book-ScanUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

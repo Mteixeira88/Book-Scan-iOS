@@ -1,0 +1,16 @@
+PODS:
+  - SWXMLHash (5.0.1)
+
+DEPENDENCIES:
+  - SWXMLHash (~> 5.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SWXMLHash
+
+SPEC CHECKSUMS:
+  SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+
+PODFILE CHECKSUM: 4fac18f7e627dac37b353c3ce7161987971afffb
+
+COCOAPODS: 1.5.2

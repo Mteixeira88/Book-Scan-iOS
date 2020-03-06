@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BSSearchControllerDelegate: class {
-    func didTapSearchButton()
+    func didTapSearchButton(for query: String)
 }
 
 class BSSearchController: UISearchController {
@@ -30,8 +30,8 @@ class BSSearchController: UISearchController {
 
 extension BSSearchController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegateSearch.didTapSearchButton(for: textField.text!)
         isActive = false
-        delegateSearch.didTapSearchButton()
         return true
     }
 }

@@ -14,15 +14,16 @@ class BSSingleResultViewController: UIViewController {
     let backgroundView = UIView()
     let resultView = BSItemResultView()
     
+    var book: Book!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
         backgroundView.addGestureRecognizer(tap)
         
-        resultView.set(bookTitle: "O Último Cabalista de Lisboa", author: "Richard Zimmler", published: "1996", score: "3.86", reviewsCount: "261")
-        
         configureUI()
+        resultView.set(book: book)
     }
     
     func configureUI() {

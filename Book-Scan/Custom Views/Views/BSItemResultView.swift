@@ -26,12 +26,12 @@ class BSItemResultView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(bookTitle: String, author: String, published: String, score: String, reviewsCount: String) {
-        bookTitleLabel.text = bookTitle.uppercased()
-        authorLabel.text = "by \(author.uppercased())"
-        publishedLabel.text = "first published in \(published)"
-        scoreLabel.text = score
-        reviewsCountLabel.text = "in \(reviewsCount) reviews"
+    func set(book: Book) {
+        bookTitleLabel.text = book.title.uppercased()
+        authorLabel.text = "by \(book.author. uppercased())"
+        publishedLabel.text = book.published != "" ? "first published in \(book.published)" : "Year not available"
+        scoreLabel.text = "\(book.averageRating)"
+        reviewsCountLabel.text = "in \(book.ratingCount) reviews"
     }
     
     private func configure() {
