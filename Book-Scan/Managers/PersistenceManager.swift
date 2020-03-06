@@ -19,6 +19,8 @@ class PersistenceManager {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookCoreData")
+        
         switch actionType {
         case .add:
             let entity = NSEntityDescription.entity(forEntityName: "BookCoreData", in: managedContext)!
@@ -34,11 +36,11 @@ class PersistenceManager {
             
             do {
                 try managedContext.save()
+                completed(nil)
             } catch let error as NSError {
                 completed("Could not save. \(error), \(error.userInfo)")
             }
         case .remove:
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookCoreData")
             fetchRequest.predicate = NSPredicate(format: "id = %@", "\(book.id)")
             
             do {
@@ -47,6 +49,7 @@ class PersistenceManager {
                     managedContext.delete(object)
                 }
                 try managedContext.save()
+                completed(nil)
             } catch let error as NSError {
                 completed("Could not save. \(error), \(error.userInfo)")
             }
@@ -75,4 +78,15 @@ class PersistenceManager {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
+    
+    static func alreadyFavorite(of book: Book, completed: @escaping(Bool) -> Void) {
+        PersistenceManager.fetchData { books in
+            if let _ = books.first(where: { $0.id == book.id }) {
+                completed(true)
+                return
+            }
+            completed(false)
+        }
+    }
+    
 }

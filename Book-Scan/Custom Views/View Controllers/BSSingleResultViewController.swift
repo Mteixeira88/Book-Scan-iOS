@@ -38,20 +38,17 @@ class BSSingleResultViewController: UIViewController {
     func getFavorites() {
         favoriteImage.image = SFSybmols.noFavorite
         
-        PersistenceManager.fetchData { [weak self] books in
-            guard let self = self else { return }
-            if let _ = books.first(where: { $0.id == self.book.id }) {
+        PersistenceManager.alreadyFavorite(of: book) { isFav in
+            if isFav {
                 DispatchQueue.main.async {
                     self.isFavorite = true
                     self.favoriteImage.image = SFSybmols.isFavorite
-                    return
                 }
             }
         }
     }
     
     func configureUI() {
-        
         view.addSubview(backgroundView)
         view.addSubview(containerView)
         view.addSubview(resultView)
