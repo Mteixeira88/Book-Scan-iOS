@@ -28,7 +28,7 @@ class BSItemResultView: UIView {
     
     func set(book: Book) {
         bookTitleLabel.text = book.title.uppercased()
-        authorLabel.text = "by \(book.author. uppercased())"
+        authorLabel.text = "by \(book.author.uppercased())"
         publishedLabel.text = book.published != "" ? "first published in \(book.published)" : "Year not available"
         scoreLabel.text = "\(book.averageRating)"
         reviewsCountLabel.text = "in \(book.ratingCount) reviews"

@@ -9,12 +9,13 @@
 import UIKit
 
 protocol BSSearchControllerDelegate: class {
-    func didTapSearchButton(for query: String)
+    func didFinishSearch(with result: [Book], error: String?)
 }
 
 class BSSearchController: UISearchController {
     
     var delegateSearch: BSSearchControllerDelegate!
+    var resultType = 0
     
     override func loadView() {
         super.loadView()
@@ -30,7 +31,15 @@ class BSSearchController: UISearchController {
 
 extension BSSearchController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        delegateSearch.didTapSearchButton(for: textField.text!)
+        NetworkManager.shared.genericRequest(for: Book.self, url: "&q=\(textField.text!.replacingOccurrences(of: " ", with: "+"))") { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let books):
+                self.delegateSearch.didFinishSearch(with: books, error: nil)
+            case .failure(let error):
+                self.delegateSearch.didFinishSearch(with: [], error: error.rawValue)
+            }
+        }
         isActive = false
         return true
     }

@@ -20,18 +20,12 @@ class ScanViewController: UIViewController {
 }
 
 extension ScanViewController: BSSearchControllerDelegate {
-    func didTapSearchButton(for query: String) {
-        NetworkManager.shared.genericRequest(for: Book.self, url: "&q=\(query)") { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let books):
-                print(books)
-                if books.count == 1 {
-                    self.presentBSResultOnMainThread(book: books[0])
-                }
-            case .failure(_):
-                print("Something went wrong")
-            }
+    func didFinishSearch(with result: [Book], error: String?) {
+        guard let _ = error else {
+            print(error!)
+            return
         }
+        
+        self.presentBSResultOnMainThread(book: result[0])
     }
 }
