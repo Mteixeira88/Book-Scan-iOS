@@ -13,11 +13,12 @@ enum SFSybmols {
 }
 
 enum Images {
-    
+    static let placholderImage = UIImage(named: "placeholder")
 }
 
 enum Colors {
     static let mainColor = UIColor.systemPink
+    static let greenColor = UIColor(named: "Green")
 }
 
 enum ScreenSize {

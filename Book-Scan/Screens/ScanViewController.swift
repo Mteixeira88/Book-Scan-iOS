@@ -13,7 +13,7 @@ class ScanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
+        view.backgroundColor = .systemBackground
         searchController.delegateSearch = self
         addSearchBar(with: searchController)
     }

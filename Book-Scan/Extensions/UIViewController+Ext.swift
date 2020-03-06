@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     func presentBSResultOnMainThread() {
         DispatchQueue.main.async {
-            let alertVC = BSResultViewController()
+            let alertVC = BSSingleResultViewController()
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
             self.present(alertVC, animated: true)

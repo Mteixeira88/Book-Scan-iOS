@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		27F2E36424114FC00045A0F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E36324114FC00045A0F9 /* Constants.swift */; };
-		27F2E367241151120045A0F9 /* BSResultViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E366241151120045A0F9 /* BSResultViewContainer.swift */; };
-		27F2E36A241151780045A0F9 /* BSResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E369241151780045A0F9 /* BSResultViewController.swift */; };
+		27F2E367241151120045A0F9 /* BSSingleResultViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E366241151120045A0F9 /* BSSingleResultViewContainer.swift */; };
 		27F2E36D241152440045A0F9 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E36C241152440045A0F9 /* UIViewController+Ext.swift */; };
+		27F2E3722411ADFB0045A0F9 /* BSSingleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E3712411ADFB0045A0F9 /* BSSingleResultViewController.swift */; };
+		27F2E3742411AE3F0045A0F9 /* BSItemResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E3732411AE3F0045A0F9 /* BSItemResultView.swift */; };
+		27F2E37724125C4E0045A0F9 /* BSItemResultImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E37624125C4E0045A0F9 /* BSItemResultImage.swift */; };
+		27F2E37A24125C9E0045A0F9 /* BSTitlteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E37924125C9E0045A0F9 /* BSTitlteLabel.swift */; };
+		27F2E37C24125D630045A0F9 /* BSScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E37B24125D630045A0F9 /* BSScoreLabel.swift */; };
+		27F2E37E24125F040045A0F9 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E37D24125F040045A0F9 /* UIView+Ext.swift */; };
 		27FDB4D324112C74005C14CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FDB4D224112C74005C14CF /* AppDelegate.swift */; };
 		27FDB4D524112C74005C14CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FDB4D424112C74005C14CF /* SceneDelegate.swift */; };
 		27FDB4DD24112C74005C14CF /* Book_Scan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27FDB4DB24112C74005C14CF /* Book_Scan.xcdatamodeld */; };
@@ -43,9 +48,14 @@
 
 /* Begin PBXFileReference section */
 		27F2E36324114FC00045A0F9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		27F2E366241151120045A0F9 /* BSResultViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSResultViewContainer.swift; sourceTree = "<group>"; };
-		27F2E369241151780045A0F9 /* BSResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSResultViewController.swift; sourceTree = "<group>"; };
+		27F2E366241151120045A0F9 /* BSSingleResultViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSingleResultViewContainer.swift; sourceTree = "<group>"; };
 		27F2E36C241152440045A0F9 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		27F2E3712411ADFB0045A0F9 /* BSSingleResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSingleResultViewController.swift; sourceTree = "<group>"; };
+		27F2E3732411AE3F0045A0F9 /* BSItemResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSItemResultView.swift; sourceTree = "<group>"; };
+		27F2E37624125C4E0045A0F9 /* BSItemResultImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSItemResultImage.swift; sourceTree = "<group>"; };
+		27F2E37924125C9E0045A0F9 /* BSTitlteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSTitlteLabel.swift; sourceTree = "<group>"; };
+		27F2E37B24125D630045A0F9 /* BSScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSScoreLabel.swift; sourceTree = "<group>"; };
+		27F2E37D24125F040045A0F9 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		27FDB4CF24112C74005C14CF /* Book-Scan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book-Scan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FDB4D224112C74005C14CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27FDB4D424112C74005C14CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +111,8 @@
 		27F2E365241150F10045A0F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				27F2E366241151120045A0F9 /* BSResultViewContainer.swift */,
+				27F2E366241151120045A0F9 /* BSSingleResultViewContainer.swift */,
+				27F2E3732411AE3F0045A0F9 /* BSItemResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -111,7 +122,7 @@
 			children = (
 				27FDB50D241145F6005C14CF /* BSTabBarController.swift */,
 				27FDB51224114BF7005C14CF /* BSSearchController.swift */,
-				27F2E369241151780045A0F9 /* BSResultViewController.swift */,
+				27F2E3712411ADFB0045A0F9 /* BSSingleResultViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -120,8 +131,26 @@
 			isa = PBXGroup;
 			children = (
 				27F2E36C241152440045A0F9 /* UIViewController+Ext.swift */,
+				27F2E37D24125F040045A0F9 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		27F2E37524125C230045A0F9 /* Image Views */ = {
+			isa = PBXGroup;
+			children = (
+				27F2E37624125C4E0045A0F9 /* BSItemResultImage.swift */,
+			);
+			path = "Image Views";
+			sourceTree = "<group>";
+		};
+		27F2E37824125C6C0045A0F9 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				27F2E37924125C9E0045A0F9 /* BSTitlteLabel.swift */,
+				27F2E37B24125D630045A0F9 /* BSScoreLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 		27FDB4C624112C74005C14CF = {
@@ -190,8 +219,8 @@
 		27FDB50624114598005C14CF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				27FDB508241145BF005C14CF /* ScanViewController.swift */,
 				27FDB50A241145CD005C14CF /* FavoritesViewController.swift */,
+				27FDB508241145BF005C14CF /* ScanViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -199,6 +228,8 @@
 		27FDB507241145A7005C14CF /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				27F2E37824125C6C0045A0F9 /* Labels */,
+				27F2E37524125C230045A0F9 /* Image Views */,
 				27F2E368241151510045A0F9 /* View Controllers */,
 				27F2E365241150F10045A0F9 /* Views */,
 			);
@@ -335,15 +366,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27F2E36A241151780045A0F9 /* BSResultViewController.swift in Sources */,
 				27FDB50E241145F6005C14CF /* BSTabBarController.swift in Sources */,
+				27F2E3722411ADFB0045A0F9 /* BSSingleResultViewController.swift in Sources */,
 				27FDB51324114BF7005C14CF /* BSSearchController.swift in Sources */,
 				27FDB4DD24112C74005C14CF /* Book_Scan.xcdatamodeld in Sources */,
-				27F2E367241151120045A0F9 /* BSResultViewContainer.swift in Sources */,
+				27F2E37C24125D630045A0F9 /* BSScoreLabel.swift in Sources */,
+				27F2E367241151120045A0F9 /* BSSingleResultViewContainer.swift in Sources */,
 				27FDB509241145BF005C14CF /* ScanViewController.swift in Sources */,
 				27FDB4D324112C74005C14CF /* AppDelegate.swift in Sources */,
+				27F2E3742411AE3F0045A0F9 /* BSItemResultView.swift in Sources */,
 				27FDB50B241145CD005C14CF /* FavoritesViewController.swift in Sources */,
 				27FDB4D524112C74005C14CF /* SceneDelegate.swift in Sources */,
+				27F2E37E24125F040045A0F9 /* UIView+Ext.swift in Sources */,
+				27F2E37A24125C9E0045A0F9 /* BSTitlteLabel.swift in Sources */,
+				27F2E37724125C4E0045A0F9 /* BSItemResultImage.swift in Sources */,
 				27F2E36D241152440045A0F9 /* UIViewController+Ext.swift in Sources */,
 				27F2E36424114FC00045A0F9 /* Constants.swift in Sources */,
 			);
