@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoritesViewController: UIViewController {
     let searchController = BSSearchController(searchResultsController: nil)
@@ -17,10 +18,18 @@ class FavoritesViewController: UIViewController {
         searchController.delegateSearch = self
         addSearchBar(with: searchController)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 }
 
 extension FavoritesViewController: BSSearchControllerDelegate {
     func didFinishSearch(with result: [Book], error: String?) {
-        self.presentBSResultOnMainThread(book: result[0])
+        if error != nil {
+            print(error)
+        }
+        
+        presentBSResultOnMainThread(book: result[0])
     }
 }

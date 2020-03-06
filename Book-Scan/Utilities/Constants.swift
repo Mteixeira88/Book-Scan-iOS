@@ -14,6 +14,8 @@ enum Network {
 
 enum SFSybmols {
     static let searchGlass = UIImage(systemName: "magnifyingglass")
+    static let noFavorite = UIImage(systemName: "star")
+    static let isFavorite = UIImage(systemName: "star.fill")
 }
 
 enum Images {
