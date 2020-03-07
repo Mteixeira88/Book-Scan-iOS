@@ -13,7 +13,7 @@ class BSSingleResultViewController: UIViewController {
     let containerView = BSSingleResultViewContainer()
     let backgroundView = UIView()
     let resultView = BSItemResultView()
-    let favoriteImage = UIImageView()
+    let favoriteImage = BSFavoriteImage(frame: .zero)
     
     var isFavorite = false
     
@@ -26,7 +26,6 @@ class BSSingleResultViewController: UIViewController {
         backgroundView.addGestureRecognizer(tap)
         
         let tapFavorites = UITapGestureRecognizer(target: self, action: #selector(setFavorites))
-        favoriteImage.isUserInteractionEnabled = true
         favoriteImage.addGestureRecognizer(tapFavorites)
         
         configureUI()
@@ -36,13 +35,13 @@ class BSSingleResultViewController: UIViewController {
     }
     
     func getFavorites() {
-        favoriteImage.image = SFSybmols.noFavorite
-        
-        PersistenceManager.alreadyFavorite(of: book) { isFav in
+        PersistenceManager.alreadyFavorite(of: book) { [weak self] isFav in
+            guard let self = self else { return }
             if isFav {
                 DispatchQueue.main.async {
                     self.isFavorite = true
                     self.favoriteImage.image = SFSybmols.isFavorite
+                    self.favoriteImage.tintColor = .systemYellow
                 }
             }
         }
@@ -53,8 +52,6 @@ class BSSingleResultViewController: UIViewController {
         view.addSubview(containerView)
         view.addSubview(resultView)
         view.addSubview(favoriteImage)
-        
-        favoriteImage.translatesAutoresizingMaskIntoConstraints = false
         
         backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,18 +85,20 @@ class BSSingleResultViewController: UIViewController {
     
     @objc func setFavorites() {
         isFavorite = !isFavorite
-        favoriteImage.image = isFavorite ? SFSybmols.isFavorite : SFSybmols.noFavorite
+        self.favoriteImage.update(isFavorite: self.isFavorite)
         
         if isFavorite {
-            PersistenceManager.updateWith(book: book, actionType: .add) { (error) in
+            PersistenceManager.updateWith(book: book, actionType: .add) {  (error) in
+                
                 if error != nil {
-                    print(error)
+                    print("Error adding to favorites")
                 }
             }
         } else {
             PersistenceManager.updateWith(book: book, actionType: .remove) { (error) in
+                
                 if error != nil {
-                    print(error)
+                    print("Error removing from favorites")
                 }
             }
         }

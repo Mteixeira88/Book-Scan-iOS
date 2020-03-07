@@ -27,7 +27,7 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: BSSearchControllerDelegate {
     func didFinishSearch(with result: [Book], error: String?) {
         if error != nil {
-            print(error)
+            print(error!)
         }
         
         presentBSResultOnMainThread(book: result[0])
