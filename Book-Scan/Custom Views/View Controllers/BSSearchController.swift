@@ -12,20 +12,22 @@ protocol BSSearchControllerDelegate: class {
     func didFinishSearch(with result: [Book], error: String?)
 }
 
-class BSSearchController: UISearchController {
+class BSSearchController: UIViewController {
     
+    let searchController = UISearchController(searchResultsController: nil)
     var delegateSearch: BSSearchControllerDelegate!
     var resultType = 0
     
     override func loadView() {
         super.loadView()
-        searchBar.placeholder = "Search for title or ISBN"
-        searchBar.tintColor = Colors.mainColor
+        addSearchBar(with: searchController)
+        searchController.searchBar.placeholder = "Search for title or ISBN"
+        searchController.searchBar.tintColor = Colors.mainColor
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.searchTextField.delegate = self
+        searchController.searchBar.searchTextField.delegate = self
     }
 }
 
@@ -35,12 +37,23 @@ extension BSSearchController: UITextFieldDelegate {
             guard let self = self else { return }
             switch result {
             case .success(let books):
-                self.delegateSearch.didFinishSearch(with: books, error: nil)
+                guard books.count != 1  else {
+                    self.presentBSResultOnMainThread(book: books[0])
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    let destVC = MultipleResultsViewController()
+                    let navController = UINavigationController(rootViewController: destVC)
+                    
+                    destVC.books = books
+                    self.present(navController, animated: true)
+                }
             case .failure(let error):
                 self.delegateSearch.didFinishSearch(with: [], error: error.rawValue)
             }
         }
-        isActive = false
+        searchController.isActive = false
         return true
     }
 }

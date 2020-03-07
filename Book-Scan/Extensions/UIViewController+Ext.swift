@@ -19,7 +19,7 @@ extension UIViewController {
         }
     }
     
-    func addSearchBar(with searchController: BSSearchController) {
+    func addSearchBar(with searchController: UISearchController) {
         navigationItem.titleView = searchController.searchBar
         searchController.hidesNavigationBarDuringPresentation = false
     }

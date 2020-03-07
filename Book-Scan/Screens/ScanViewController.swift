@@ -8,24 +8,9 @@
 
 import UIKit
 
-class ScanViewController: UIViewController {
-    let searchController = BSSearchController(searchResultsController: nil)
+class ScanViewController: BSSearchController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        searchController.delegateSearch = self
-        addSearchBar(with: searchController)
-    }
-}
-
-extension ScanViewController: BSSearchControllerDelegate {
-    func didFinishSearch(with result: [Book], error: String?) {
-        guard let _ = error else {
-            print(error!)
-            return
-        }
-        
-        self.presentBSResultOnMainThread(book: result[0])
     }
 }

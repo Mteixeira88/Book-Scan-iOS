@@ -1,30 +1,29 @@
 //
-//  FavoritesViewController.swift
+//  MultipleResultsViewController.swift
 //  Book-Scan
 //
-//  Created by Miguel Teixeira on 05/03/2020.
+//  Created by Miguel Teixeira on 07/03/2020.
 //  Copyright © 2020 Miguel Teixeira. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class FavoritesViewController: BSSearchController {
-    
+class MultipleResultsViewController: UIViewController {
     let tableView = UITableView()
     
     var books = [Book]()
-    var filterBooks = [Book]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
+        configureViewController()
         configureTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getBooks()
+    func configureViewController() {
+        view.backgroundColor = .systemBackground
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismssVC))
+        navigationItem.rightBarButtonItem = doneButton
     }
     
     func configureTableView() {
@@ -37,16 +36,12 @@ class FavoritesViewController: BSSearchController {
         tableView.register(ItemResultCell.self, forCellReuseIdentifier: ItemResultCell.reuseID)
     }
     
-    func getBooks() {
-        PersistenceManager.fetchData { [weak self] books in
-            guard let self = self else { return }
-            self.books = books
-            self.tableView.reloadData()
-        }
+    @objc func dismssVC() {
+        dismiss(animated: true)
     }
 }
 
-extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
+extension MultipleResultsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books.count
     }
@@ -56,7 +51,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: ItemResultCell.reuseID) as! ItemResultCell
         let book = books[indexPath.row]
         cell.cellView.set(book: book)
-        cell.cellView.favoritesImage.removeFromSuperview()
+        
         return cell
     }
     
@@ -79,3 +74,4 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+

@@ -57,7 +57,7 @@ class BSItemResultView: UIView {
                 
                 if error == nil {
                     self.favoritesImage.image = SFSybmols.noFavorite
-                    self.favoritesImage.tintColor = .systemBackground
+                    self.favoritesImage.tintColor = .systemGray
                 }
             }
         }

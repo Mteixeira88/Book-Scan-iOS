@@ -32,8 +32,6 @@ class ItemResultCell: UITableViewCell {
         
         addSubview(cellView)
         
-        cellView.favoritesImage.removeFromSuperview()
-        
         NSLayoutConstraint.activate([
             cellView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
