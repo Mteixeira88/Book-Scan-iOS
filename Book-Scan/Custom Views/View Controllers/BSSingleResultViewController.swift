@@ -22,14 +22,10 @@ class BSSingleResultViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
         backgroundView.addGestureRecognizer(tap)
-        
-//        let tapFavorites = UITapGestureRecognizer(target: self, action: #selector(setFavorites))
-//        favoriteImage.addGestureRecognizer(tapFavorites)
+        getFavorites()
         
         configureUI()
         resultView.set(book: book)
-        
-        getFavorites()
     }
     
     func getFavorites() {
@@ -37,6 +33,7 @@ class BSSingleResultViewController: UIViewController {
             guard let self = self else { return }
             if isFav {
                 DispatchQueue.main.async {
+                    self.resultView.isFavorite = true
                     self.resultView.favoritesImage.image = SFSybmols.isFavorite
                     self.resultView.favoritesImage.tintColor = .systemYellow
                 }

@@ -11,11 +11,11 @@ import UIKit
 extension UIViewController {
     func presentBSResultOnMainThread(book: Book) {
         DispatchQueue.main.async {
-            let alertVC = BSSingleResultViewController()
-            alertVC.book = book
-            alertVC.modalPresentationStyle = .overFullScreen
-            alertVC.modalTransitionStyle = .crossDissolve
-            self.present(alertVC, animated: true)
+            let resultVC = BSSingleResultViewController()
+            resultVC.book = book
+            resultVC.modalPresentationStyle = .overFullScreen
+            resultVC.modalTransitionStyle = .crossDissolve
+            self.present(resultVC, animated: true)
         }
     }
     
