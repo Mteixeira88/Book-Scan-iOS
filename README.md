@@ -2,7 +2,7 @@
 
 ## Goal
 
-Imagine yourself inside a bookstore and you don't know if that book is good, ```Book-Scan``` scan the books instantly with your camera and check the GoodReads API for average rating to help you decide if you should buy the book or not.
+Imagine yourself inside a bookstore and you don't know if that book is good, ```Book-Scan``` will scan the book instantly with your camera and check the GoodReads API for average rating to help you decide if you should buy the book or not.
 
 You can also add/remove that book to your favorites.
 
