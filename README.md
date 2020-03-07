@@ -10,7 +10,6 @@ You can also add/remove that book to your favorites.
 - No account required (no login)
 - Open Source, meaning anyone can contribute to this project in order to improve it
 - Doesn't store any information online, meaning it doesn't store any of your data, everything is stored on your phone
-- You will keep your information even if you delete the app and install it in another day (uses CoreData)
 - iOS exclusive
 
 ## CONS vs OTHER APPS (GoodReads, BookShelve, etc)
