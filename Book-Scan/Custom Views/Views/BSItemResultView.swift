@@ -16,6 +16,11 @@ class BSItemResultView: UIView {
     let publishedLabel = BSTitlteLabel(textAlignment: .left, fontSize: 13)
     let scoreLabel = BSScoreLabel(frame: .zero)
     let reviewsCountLabel = BSTitlteLabel(textAlignment: .left, fontSize: 13)
+    let favoritesImage = BSFavoriteImage(frame: .zero)
+    
+    var isFavorite = false
+    
+    var book: Book!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +32,7 @@ class BSItemResultView: UIView {
     }
     
     func set(book: Book) {
+        self.book = book
         bookTitleLabel.text = book.title.uppercased()
         authorLabel.text = "by \(book.author.uppercased())"
         publishedLabel.text = book.published != "" ? "first published in \(book.published)" : "Year not available"
@@ -34,9 +40,36 @@ class BSItemResultView: UIView {
         reviewsCountLabel.text = "in \(book.ratingCount) reviews"
     }
     
+    @objc func setFavorites() {
+        isFavorite = !isFavorite
+        
+        if isFavorite {
+            PersistenceManager.updateWith(book: book, actionType: .add) {  [weak self] (error) in
+                guard let self = self else { return }
+                if error == nil {
+                    self.favoritesImage.image = SFSybmols.isFavorite
+                    self.favoritesImage.tintColor = .systemYellow
+                }
+            }
+        } else {
+            PersistenceManager.updateWith(book: book, actionType: .remove) { [weak self] (error) in
+                guard let self = self else { return }
+                
+                if error == nil {
+                    self.favoritesImage.image = SFSybmols.noFavorite
+                    self.favoritesImage.tintColor = .systemBackground
+                }
+            }
+        }
+        
+    }
+    
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        addSubviews(imagePreview, bookTitleLabel, authorLabel, publishedLabel, scoreLabel, reviewsCountLabel)
+        let tapFavorites = UITapGestureRecognizer(target: self, action: #selector(setFavorites))
+        favoritesImage.addGestureRecognizer(tapFavorites)
+        
+        addSubviews(imagePreview, bookTitleLabel, authorLabel, publishedLabel, scoreLabel, reviewsCountLabel, favoritesImage)
         
         NSLayoutConstraint.activate([
             imagePreview.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -67,7 +100,12 @@ class BSItemResultView: UIView {
             reviewsCountLabel.bottomAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
             reviewsCountLabel.leadingAnchor.constraint(equalTo: scoreLabel.trailingAnchor, constant: 8),
             reviewsCountLabel.trailingAnchor.constraint(equalTo: bookTitleLabel.trailingAnchor),
-            reviewsCountLabel.heightAnchor.constraint(equalToConstant: 16)
+            reviewsCountLabel.heightAnchor.constraint(equalToConstant: 16),
+            
+            favoritesImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            favoritesImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            favoritesImage.widthAnchor.constraint(equalToConstant: 40),
+            favoritesImage.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 

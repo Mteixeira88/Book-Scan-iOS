@@ -27,19 +27,4 @@ class BSFavoriteImage: UIImageView {
         tintColor = .systemBackground
     }
     
-    func update(isFavorite: Bool) {
-        var isFavorite = isFavorite
-        isFavorite = !isFavorite
-        
-        if isFavorite {
-            image = SFSybmols.isFavorite
-            tintColor = .systemYellow
-        } else {
-            
-            image = SFSybmols.noFavorite
-            tintColor = .systemBackground
-        }
-        
-    }
-    
 }

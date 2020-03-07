@@ -15,8 +15,6 @@ class BSSingleResultViewController: UIViewController {
     let resultView = BSItemResultView()
     let favoriteImage = BSFavoriteImage(frame: .zero)
     
-    var isFavorite = false
-    
     var book: Book!
     
     override func viewDidLoad() {
@@ -25,8 +23,8 @@ class BSSingleResultViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
         backgroundView.addGestureRecognizer(tap)
         
-        let tapFavorites = UITapGestureRecognizer(target: self, action: #selector(setFavorites))
-        favoriteImage.addGestureRecognizer(tapFavorites)
+//        let tapFavorites = UITapGestureRecognizer(target: self, action: #selector(setFavorites))
+//        favoriteImage.addGestureRecognizer(tapFavorites)
         
         configureUI()
         resultView.set(book: book)
@@ -39,9 +37,8 @@ class BSSingleResultViewController: UIViewController {
             guard let self = self else { return }
             if isFav {
                 DispatchQueue.main.async {
-                    self.isFavorite = true
-                    self.favoriteImage.image = SFSybmols.isFavorite
-                    self.favoriteImage.tintColor = .systemYellow
+                    self.resultView.favoritesImage.image = SFSybmols.isFavorite
+                    self.resultView.favoritesImage.tintColor = .systemYellow
                 }
             }
         }
@@ -70,39 +67,12 @@ class BSSingleResultViewController: UIViewController {
             resultView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
             resultView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
             resultView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
-            resultView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
-            
-            favoriteImage.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30),
-            favoriteImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            favoriteImage.widthAnchor.constraint(equalToConstant: 40),
-            favoriteImage.heightAnchor.constraint(equalToConstant: 40)
+            resultView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
         ])
     }
     
     @objc func dismissVC() {
         dismiss(animated: true)
-    }
-    
-    @objc func setFavorites() {
-        isFavorite = !isFavorite
-        self.favoriteImage.update(isFavorite: self.isFavorite)
-        
-        if isFavorite {
-            PersistenceManager.updateWith(book: book, actionType: .add) {  (error) in
-                
-                if error != nil {
-                    print("Error adding to favorites")
-                }
-            }
-        } else {
-            PersistenceManager.updateWith(book: book, actionType: .remove) { (error) in
-                
-                if error != nil {
-                    print("Error removing from favorites")
-                }
-            }
-        }
-        
     }
 
 }
