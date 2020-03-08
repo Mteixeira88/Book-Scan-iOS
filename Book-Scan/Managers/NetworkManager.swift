@@ -16,12 +16,16 @@ enum NetworkError: String, Error {
     case dataInvalid = "Data received invalid. Please try again"
 }
 
+enum APIRequest {
+    case global
+}
+
 class NetworkManager {
     static let shared = NetworkManager()
     private let baseURL = "https://www.goodreads.com/search.xml?key=\(Network.keyGoodReads)"
     let cache = NSCache<NSString, UIImage>()
     
-    func genericRequest<T: XMLIndexerDeserializable>(for: T.Type = T.self, url: String, completed: @escaping(Result<[T], NetworkError>) -> Void) {
+    func genericRequest<T: XMLIndexerDeserializable>(for: T.Type = T.self, in request: APIRequest, url: String, completed: @escaping(Result<[T], NetworkError>) -> Void) {
         let endpoint = baseURL + url
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidUsername))
@@ -44,11 +48,15 @@ class NetworkManager {
                 return
             }
             let xml = SWXMLHash.parse(data)
-            print(type(of: xml))
-            let result = xml["GoodreadsResponse"]["search"]["results"]["work"]
+            var result: XMLIndexer? = nil
+            
+            switch request {
+                case .global:
+                result = xml["GoodreadsResponse"]["search"]["results"]["work"]
+            }
             
             do {
-                let book: [T] = try result.value()
+                let book: [T] = try result!.value()
                 completed(.success(book))
             }
             catch {

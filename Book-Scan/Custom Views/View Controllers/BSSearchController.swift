@@ -28,7 +28,7 @@ class BSSearchController: UIViewController {
 
 extension BSSearchController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        NetworkManager.shared.genericRequest(for: Book.self, url: "&q=\(textField.text!.replacingOccurrences(of: " ", with: "+"))") { [weak self] result in
+        NetworkManager.shared.genericRequest(for: Book.self, in: .global, url: "&q=\(textField.text!.replacingOccurrences(of: " ", with: "+"))") { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let books):
