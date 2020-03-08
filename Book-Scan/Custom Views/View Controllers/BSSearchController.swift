@@ -8,14 +8,9 @@
 
 import UIKit
 
-protocol BSSearchControllerDelegate: class {
-    func didFinishSearch(with result: [Book], error: String?)
-}
-
 class BSSearchController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
-    var delegateSearch: BSSearchControllerDelegate!
     var resultType = 0
     
     override func loadView() {

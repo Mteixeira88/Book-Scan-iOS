@@ -19,6 +19,7 @@ class FavoritesViewController: BSSearchController {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
         configureTableView()
+        NotificationCenter.default.addObserver(self, selector: #selector(getBooks), name: NSNotification.Name(rawValue: NSNotifications.clickedFavoriteImage), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +37,7 @@ class FavoritesViewController: BSSearchController {
         tableView.register(ItemResultCell.self, forCellReuseIdentifier: ItemResultCell.reuseID)
     }
     
-    func getBooks() {
+    @objc func getBooks() {
         PersistenceManager.fetchData { [weak self] books in
             guard let self = self else { return }
             self.books = books
@@ -69,8 +70,10 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             guard let self = self else { return }
             
             guard let _ = error else {
-                self.books.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .left)
+                DispatchQueue.main.async {
+                    self.books.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .left)
+                }
                 return
             }
         }

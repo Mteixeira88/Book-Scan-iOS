@@ -23,6 +23,7 @@ struct Book: XMLIndexerDeserializable {
         if let yearCheck = node["original_publication_year"].element?.text {
             year = yearCheck
         }
+        
         return try Book(
             id: node["id"].value(),
             averageRating: node["average_rating"].value(),

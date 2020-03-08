@@ -44,6 +44,7 @@ class NetworkManager {
                 return
             }
             let xml = SWXMLHash.parse(data)
+            print(type(of: xml))
             let result = xml["GoodreadsResponse"]["search"]["results"]["work"]
             
             do {

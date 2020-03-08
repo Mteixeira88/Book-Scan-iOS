@@ -18,6 +18,10 @@ enum SFSybmols {
     static let isFavorite = UIImage(systemName: "star.fill")
 }
 
+enum NSNotifications {
+    static let clickedFavoriteImage = "clickedFavoriteImage"
+}
+
 enum Images {
     static let placholderImage = UIImage(named: "placeholder")
 }

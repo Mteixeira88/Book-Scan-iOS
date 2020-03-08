@@ -64,6 +64,7 @@ class BSItemResultView: UIView {
             }
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NSNotifications.clickedFavoriteImage), object: nil, userInfo: nil)
     }
     
     func checkFavorites(of book: Book) {
