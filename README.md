@@ -1,6 +1,6 @@
 # Book-Scan
 
-Imagine yourself inside a bookstore and you don't know if that book is good, ```Book-Scan``` will scan the book's ISBN instantly with your camera and check the GoodReads API for average rating to help you decide if you should buy the book or not. You can also search for a title or the ISBN without using the camera.
+Imagine yourself inside a bookstore and you don't know if that book is good, ```Book-Scan``` will scan the book's ISBN instantly with your camera and check the GoodReads API for average rating to help you decide if you should buy the book or not. You can also search for a title, author or the ISBN without using the camera.
 
 You can also add/remove that book to your favorites.
 
