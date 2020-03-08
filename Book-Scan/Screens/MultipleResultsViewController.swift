@@ -51,7 +51,7 @@ extension MultipleResultsViewController: UITableViewDataSource, UITableViewDeleg
         let cell = tableView.dequeueReusableCell(withIdentifier: ItemResultCell.reuseID) as! ItemResultCell
         let book = books[indexPath.row]
         cell.cellView.set(book: book)
-        
+        cell.cellView.checkFavorites(of: book)
         return cell
     }
     

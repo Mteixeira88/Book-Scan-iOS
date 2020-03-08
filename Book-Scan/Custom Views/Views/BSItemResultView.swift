@@ -38,6 +38,8 @@ class BSItemResultView: UIView {
         publishedLabel.text = book.published != "" ? "first published in \(book.published)" : "Year not available"
         scoreLabel.text = "\(book.averageRating)"
         reviewsCountLabel.text = "in \(book.ratingCount) reviews"
+        favoritesImage.image = SFSybmols.noFavorite
+        favoritesImage.tintColor = .systemGray
     }
     
     @objc func setFavorites() {
@@ -62,6 +64,19 @@ class BSItemResultView: UIView {
             }
         }
         
+    }
+    
+    func checkFavorites(of book: Book) {
+        PersistenceManager.alreadyFavorite(of: book) { [weak self] isFav in
+            guard let self = self else { return }
+            if isFav {
+                DispatchQueue.main.async {
+                    self.isFavorite = true
+                    self.favoritesImage.image = SFSybmols.isFavorite
+                    self.favoritesImage.tintColor = .systemYellow
+                }
+            }
+        }
     }
     
     private func configure() {

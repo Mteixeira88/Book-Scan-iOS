@@ -29,16 +29,7 @@ class BSSingleResultViewController: UIViewController {
     }
     
     func getFavorites() {
-        PersistenceManager.alreadyFavorite(of: book) { [weak self] isFav in
-            guard let self = self else { return }
-            if isFav {
-                DispatchQueue.main.async {
-                    self.resultView.isFavorite = true
-                    self.resultView.favoritesImage.image = SFSybmols.isFavorite
-                    self.resultView.favoritesImage.tintColor = .systemYellow
-                }
-            }
-        }
+        self.resultView.checkFavorites(of: book)
     }
     
     func configureUI() {
