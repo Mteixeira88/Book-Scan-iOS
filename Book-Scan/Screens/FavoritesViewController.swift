@@ -14,7 +14,6 @@ class FavoritesViewController: BSSearchController {
     let tableView = UITableView()
     
     var books = [Book]()
-    var filterBooks = [Book]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

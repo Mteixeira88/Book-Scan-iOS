@@ -10,8 +10,8 @@ import UIKit
 
 class BSTabBarController: UITabBarController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         UITabBar.appearance().tintColor = Colors.mainColor
         viewControllers = [createFavoritesListNC(), createScanNC()]
     }

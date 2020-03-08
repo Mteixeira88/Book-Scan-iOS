@@ -21,7 +21,7 @@ class BSSearchController: UIViewController {
     override func loadView() {
         super.loadView()
         addSearchBar(with: searchController)
-        searchController.searchBar.placeholder = "Search for title or ISBN"
+        searchController.searchBar.placeholder = "Search for title, author or ISBN"
         searchController.searchBar.tintColor = Colors.mainColor
     }
     
@@ -50,7 +50,7 @@ extension BSSearchController: UITextFieldDelegate {
                     self.present(navController, animated: true)
                 }
             case .failure(let error):
-                self.delegateSearch.didFinishSearch(with: [], error: error.rawValue)
+                print(error.rawValue)
             }
         }
         searchController.isActive = false

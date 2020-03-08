@@ -17,19 +17,19 @@ class BSSingleResultViewController: UIViewController {
     
     var book: Book!
     
+    override func loadView() {
+        super.loadView()
+        resultView.checkFavorites(of: book)
+        configureUI()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
         backgroundView.addGestureRecognizer(tap)
-        getFavorites()
         
-        configureUI()
         resultView.set(book: book)
-    }
-    
-    func getFavorites() {
-        self.resultView.checkFavorites(of: book)
     }
     
     func configureUI() {
