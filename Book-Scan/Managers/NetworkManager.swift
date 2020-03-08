@@ -10,7 +10,7 @@ import UIKit
 import SWXMLHash
 
 enum NetworkError: String, Error {
-    case invalidUsername = "This book created an invalid request. Please try again"
+    case invalidBook = "This book created an invalid request. Please try again"
     case unableToComplete = "Unable to complete your request. Please check your internet connection"
     case invalidResponse = "Invalid response from the server. Please try again"
     case dataInvalid = "Data received invalid. Please try again"
@@ -28,7 +28,7 @@ class NetworkManager {
     func genericRequest<T: XMLIndexerDeserializable>(for: T.Type = T.self, in request: APIRequest, url: String, completed: @escaping(Result<[T], NetworkError>) -> Void) {
         let endpoint = baseURL + url
         guard let url = URL(string: endpoint) else {
-            completed(.failure(.invalidUsername))
+            completed(.failure(.invalidBook))
             return
         }
         

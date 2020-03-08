@@ -26,6 +26,7 @@ class BSItemResultImage: UIImageView {
         clipsToBounds = true
         image = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
+        contentMode = .scaleAspectFit
     }
 
 }

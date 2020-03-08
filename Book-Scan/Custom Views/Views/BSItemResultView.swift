@@ -40,6 +40,13 @@ class BSItemResultView: UIView {
         reviewsCountLabel.text = "in \(book.ratingCount) reviews"
         favoritesImage.image = SFSybmols.noFavorite
         favoritesImage.tintColor = .systemGray
+        
+        NetworkManager.shared.dowloadImage(from: book.bookImage) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.imagePreview.image = image
+            }
+        }
     }
     
     @objc func setFavorites() {
@@ -91,7 +98,7 @@ class BSItemResultView: UIView {
             imagePreview.centerYAnchor.constraint(equalTo: centerYAnchor),
             imagePreview.leadingAnchor.constraint(equalTo: leadingAnchor),
             imagePreview.widthAnchor.constraint(equalToConstant: 100),
-            imagePreview.heightAnchor.constraint(equalTo: imagePreview.heightAnchor),
+            imagePreview.heightAnchor.constraint(equalTo: imagePreview.widthAnchor),
             
             bookTitleLabel.topAnchor.constraint(equalTo: imagePreview.topAnchor),
             bookTitleLabel.leadingAnchor.constraint(equalTo: imagePreview.trailingAnchor, constant: 20),
